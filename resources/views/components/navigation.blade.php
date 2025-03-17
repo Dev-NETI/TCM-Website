@@ -1,7 +1,7 @@
 <!-- resources/views/components/navigation.blade.php -->
-<nav class="w-full">
+<nav class="top-0 left-0 w-full bg-white shadow-md z-50">
     <!-- First Layer - Top Navigation -->
-    <div class="bg-gray-800 text-white py-2">
+    <div class="bg-gray-800 relative text-white py-2">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <!-- Left Side - Contact Info -->
             <div class="flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-4 text-sm">
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Second Layer - Main Navigation -->
-    <div class="bg-white shadow-md py-4">
+    <div class="bg-white ">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center">

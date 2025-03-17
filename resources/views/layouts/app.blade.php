@@ -1,4 +1,3 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -16,19 +15,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @stack('styles')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('head')
 </head>
 <body class="font-sans antialiased bg-gray-100">
     <div id="app" class="min-h-screen flex flex-col">
-        @include('components.navigation')
+        
+        <x-navigation />
 
-        <main class="flex-grow">
+        <main class="relative">
             <div class="container mx-auto py-8 px-4">
-                @yield('content')
+                @section('content')
             </div>
         </main>
 
-        @include('components.footer')
+        <x-footer />
     </div>
 
     <!-- Scripts -->
