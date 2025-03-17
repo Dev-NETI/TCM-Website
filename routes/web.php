@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/contact-us', function () {
-    return view('contact');
+    return view('pages.contact-us');
 });
 
 Route::get('/about', function () {
