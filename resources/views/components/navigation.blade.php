@@ -1,5 +1,5 @@
 <!-- resources/views/components/navigation.blade.php -->
-<nav class="z-50 top-0 overflow-visible h-min">
+<nav class="z-[999] top-0 overflow-visible h-min">
 
     <div class="relative text-white py-4 bg-linear-to-r from-blue-800 to-blue-900">
         <div class="container mx-auto px-4 flex justify-between items-center">
