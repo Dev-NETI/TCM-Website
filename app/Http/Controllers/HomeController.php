@@ -20,22 +20,26 @@ class HomeController extends Controller
         // Get all gallery images from the public directory
         $galleryPath = public_path('images/gallery');
         $galleryImages = [];
-        
+    
         if (File::exists($galleryPath)) {
             $files = File::files($galleryPath);
-            
+    
             foreach ($files as $file) {
                 if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
                     $galleryImages[] = '/images/gallery/' . $file->getFilename();
                 }
             }
         }
-        
-        return view('home', [
-            'galleryImages' => $galleryImages,
+    
+       
+    
+        return view('pages.home', [
+            'galleryImages' => $galleryImages
         ]);
     }
     
+
+
     /**
      * Handle contact form submission.
      */
@@ -48,12 +52,12 @@ class HomeController extends Controller
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
-        
+
         // Here you would typically send an email with the contact form data
         // For example:
         // Mail::to('contact@example.com')->send(new ContactFormMail($validated));
-        
+
         // Redirect back with success message
         return redirect()->back()->with('success', 'Thank you for your message. We will get back to you soon!');
     }
-} 
+}
