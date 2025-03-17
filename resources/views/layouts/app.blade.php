@@ -25,7 +25,7 @@
 
         <main class="relative">
             <div class="container mx-auto py-8 px-4">
-                @section('content')
+                @yield('content')
             </div>
         </main>
 
@@ -34,6 +34,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    @stack('scripts')
+   @stack('scripts')
 </body>
 </html>

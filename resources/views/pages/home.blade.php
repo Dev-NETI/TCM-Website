@@ -18,6 +18,10 @@
     @endphp
 
     <div class="relative">
-        
-        @include('components.contact-form')
+        <x-gallery :images="$galleryImages" />
+        <x-gallery :images="$galleryImages" />
+        <x-gallery :images="$galleryImages" />
+        <x-gallery :images="$galleryImages" />
+        <x-contact-form />    
     </div>
+@endsection
