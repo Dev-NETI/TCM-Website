@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-        
+
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,6 +19,56 @@
             </style>
         @endif
     </head>
-    <body class="">
+    <body class="flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
+
+        <div class="flex flex-col gap-2">
+
+            <div class="flex flex-row gap-4">
+                    <x-contact.contact-card company="Far-East Transport Co., Ltd. (FETRAN)" 
+                    contact="+81 3 6381 5073" 
+                    email="shipmanage@fetranship.co.jp"
+                    workingHours="Monday - Friday; 9AM - 5PM"/>
+
+                    <div class="border border-2 border-gray-300">
+                        MAP
+                    </div>
+            </div>
+
+            <div class="flex flex-row gap-4">
+                    <x-contact.contact-card company="Far-East Transport Co., Ltd. (FETRAN)" 
+                    contact="09509098702" 
+                    email="neti@neti.com.ph"
+                    workingHours="Monday - Friday; 9AM - 5PM"/>
+
+                    <div class="border border-2 border-gray-300">
+                        MAP
+                    </div>
+            </div>
+
+            <div class="flex flex-row gap-4">
+                    <x-contact.contact-card company="Far-East Transport Co., Ltd. (FETRAN)" 
+                    contact="09509098702" 
+                    email="neti@neti.com.ph"
+                    workingHours="Monday - Friday; 9AM - 5PM"/>
+
+                    <div class="border border-2 border-gray-300">
+                        MAP
+                    </div>
+            </div>
+
+            <div class="flex flex-row gap-4">
+                    <x-contact.contact-card company="Far-East Transport Co., Ltd. (FETRAN)" 
+                    contact="09509098702" 
+                    email="neti@neti.com.ph"
+                    workingHours="Monday - Friday; 9AM - 5PM"/>
+
+                    <div class="border border-2 border-gray-300">
+                        MAP
+                    </div>
+            </div>
+
+        </div>
+
+
     </body>
 </html>
