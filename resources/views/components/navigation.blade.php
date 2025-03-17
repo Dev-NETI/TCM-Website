@@ -54,22 +54,21 @@
                     </svg>
                 </button>
             </div>
-
             <!-- Desktop Navigation -->
             <div id="sticky-nav-links" class="hidden md:flex space-x-8 text-white">
-                <a href="{{route('home')}}" class="hover:text-blue-600 transition duration-300">Home</a>
-                <a href="{{route('about')}}" class="hover:text-blue-600 transition duration-300">About Us</a>
-                <a href="{{route('services')}}" class="hover:text-blue-600 transition duration-300">Services</a>
-                <a href="{{route('contact')}}" class=" hover:text-blue-600 transition duration-300">Contact</a>
+                <a href="{{route('home')}}" class="transition py-2 duration-300 {{ (Route::currentRouteName() === 'home')? 'border-b-4 border-white active-nav': '' }}">Home</a>
+                <a href="{{route('about')}}" class="transition py-2 duration-300 {{ request()->is('about*')? 'border-b-4 border-white active-nav': '' }}">About Us</a>
+                <a href="{{route('services')}}" class="transition py-2 duration-300 {{ request()->is('services*')? 'border-b-4 border-white active-nav': '' }}">Our Services</a>
+                <a href="{{route('contact')}}" class="transition py-2 duration-300 {{ request()->is('contact*')? 'border-b-4 border-white active-nav': '' }}">Contact</a>
             </div>
         </div>
 
         <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 mt-4">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 mt-4 text-blue-700">
             <div class="container mx-auto px-4 py-2">
-                <a href="{{route('home')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Home</a>
+                <a href="{{route('home')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300 ">Home</a>
                 <a href="{{route('about')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">About Us</a>
-                <a href="{{route('services')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Services</a>
+                <a href="{{route('services')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Our Services</a>
                 <a href="{{route('contact')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Contact</a>
             </div>
         </div>
@@ -90,6 +89,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         const nav = document.querySelector("#sticky-nav"); // Add an ID to the navbar div
         const links = document.querySelector("#sticky-nav-links")
+        const active_link = document.querySelector(".active-nav")
         const navOffset = nav.offsetTop;
 
         window.addEventListener("scroll", function () {
@@ -97,10 +97,16 @@
                 nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "bg-blue-100");
                 nav.classList.remove("absolute");
                 links.classList.remove("text-white")
+                links.classList.add("text-blue-700")
+                active_link.classList.remove("border-white")
+                active_link.classList.add("border-blue-700")
             } else {
                 nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "bg-blue-100");
                 nav.classList.add("absolute");
                 links.classList.add("text-white")
+                links.classList.remove("text-blue-700")
+                active_link.classList.add("border-white")
+                active_link.classList.remove("border-blue-700")
             }
         });
     });
