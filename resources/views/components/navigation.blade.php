@@ -57,7 +57,7 @@
                 <a href="" class="text-gray-800 hover:text-blue-600 transition duration-300">Home</a>
                 <a href="" class="text-gray-800 hover:text-blue-600 transition duration-300">About Us</a>
                 <a href="/services" class="text-gray-800 hover:text-blue-600 transition duration-300">Services</a>
-                <a href="/contact" class="text-gray-800 hover:text-blue-600 transition duration-300">Contact</a>
+                <a href="/contact-us" class="text-gray-800 hover:text-blue-600 transition duration-300">Contact</a>
             </div>
         </div>
 
