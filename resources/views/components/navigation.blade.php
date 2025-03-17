@@ -1,6 +1,6 @@
 <!-- resources/views/components/navigation.blade.php -->
-<nav class="relative z-50">
-    <!-- First Layer - Top Navigation -->
+<nav class="z-50 top-0 overflow-visible h-min">
+
     <div class="relative text-white py-4 bg-linear-to-r from-blue-800 to-blue-900">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <!-- Left Side - Contact Info -->
@@ -37,12 +37,12 @@
     </div>
 
     <!-- Second Layer - Main Navigation -->
-    <div class="sticky top-0 py-4">
+    <div id="sticky-nav" class="absolute w-full py-4 z-50">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center">
-                <a href="/" class="text-xl font-bold text-gray-800">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10">
+                <a href="{{route('home')}}" class="text-xl font-bold text-gray-800">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20">
                 </a>
             </div>
 
@@ -56,21 +56,21 @@
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-8">
-                <a href="" class="text-gray-800 hover:text-blue-600 transition duration-300">Home</a>
-                <a href="" class="text-gray-800 hover:text-blue-600 transition duration-300">About Us</a>
-                <a href="/services" class="text-gray-800 hover:text-blue-600 transition duration-300">Services</a>
-                <a href="/contact" class="text-gray-800 hover:text-blue-600 transition duration-300">Contact</a>
+            <div id="sticky-nav-links" class="hidden md:flex space-x-8 text-white">
+                <a href="{{route('home')}}" class="hover:text-blue-600 transition duration-300">Home</a>
+                <a href="{{route('about')}}" class="hover:text-blue-600 transition duration-300">About Us</a>
+                <a href="{{route('services')}}" class="hover:text-blue-600 transition duration-300">Services</a>
+                <a href="{{route('contact')}}" class=" hover:text-blue-600 transition duration-300">Contact</a>
             </div>
         </div>
 
         <!-- Mobile Navigation -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 mt-4">
             <div class="container mx-auto px-4 py-2">
-                <a href="/" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Home</a>
-                <a href="/us" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">About Us</a>
-                <a href="/services" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Services</a>
-                <a href="/contact" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Contact</a>
+                <a href="{{route('home')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Home</a>
+                <a href="{{route('about')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">About Us</a>
+                <a href="{{route('services')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Services</a>
+                <a href="{{route('contact')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Contact</a>
             </div>
         </div>
     </div>
@@ -84,6 +84,24 @@
 
         mobileMenuButton.addEventListener('click', function() {
             mobileMenu.classList.toggle('hidden');
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const nav = document.querySelector("#sticky-nav"); // Add an ID to the navbar div
+        const links = document.querySelector("#sticky-nav-links")
+        const navOffset = nav.offsetTop;
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY >= navOffset) {
+                nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "bg-blue-100");
+                nav.classList.remove("absolute");
+                links.classList.remove("text-white")
+            } else {
+                nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "bg-blue-100");
+                nav.classList.add("absolute");
+                links.classList.add("text-white")
+            }
         });
     });
 </script>

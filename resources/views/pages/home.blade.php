@@ -20,8 +20,6 @@
     <div class="relative">
         <x-gallery :images="$galleryImages" />
         <x-gallery :images="$galleryImages" />
-        <x-gallery :images="$galleryImages" />
-        <x-gallery :images="$galleryImages" />
         <x-contact-form />    
     </div>
 @endsection

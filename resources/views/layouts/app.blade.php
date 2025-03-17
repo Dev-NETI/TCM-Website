@@ -24,7 +24,7 @@
         <x-navigation />
 
         <main class="relative">
-            <div class="container mx-auto py-8 px-4">
+            <div class="container mx-auto px-4">
                 @yield('content')
             </div>
         </main>
