@@ -17,7 +17,7 @@
                         </div>
                     @endif
                     
-                    <form action="{{ route('contact.submit') }}" method="POST" class="space-y-4">
+                    <form action="" method="POST" class="space-y-4">
                         @csrf
                         <div>
                             <label for="name" class="sr-only">Name</label>
