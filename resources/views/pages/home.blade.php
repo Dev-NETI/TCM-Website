@@ -22,4 +22,5 @@
         <x-gallery :images="$galleryImages" />
         <x-contact-form />    
     </div>
+
 @endsection
