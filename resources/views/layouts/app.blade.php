@@ -24,8 +24,8 @@
 
         <x-navigation />
 
-        <main class="relative">
-            <div class="">
+        <main class="relative w-full">
+            <div class="relative w-full">
                 @yield('content')
                 <!-- Back to Top Button -->
                 <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-900 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-blue-800 z-50">
@@ -36,9 +36,9 @@
             </div>
         </main>
 
-        <x-footer />
     </div>
 
+    <x-footer />
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script>
