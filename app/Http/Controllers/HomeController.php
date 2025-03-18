@@ -21,8 +21,10 @@ class HomeController extends Controller
         $galleryPath = public_path('images/gallery');
         $galleryImages = [];
 
+    
         if (File::exists($galleryPath)) {
             $files = File::files($galleryPath);
+    
 
             foreach ($files as $file) {
                 if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
@@ -31,11 +33,14 @@ class HomeController extends Controller
             }
         }
 
-        
+    
+       
+    
         return view('pages.home', [
-            'galleryImages' => $galleryImages,
+            'galleryImages' => $galleryImages
         ]);
     }
+    
 
     /**
      * Handle contact form submission.

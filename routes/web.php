@@ -21,4 +21,6 @@ Route::get('/services', function () {
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
+
 // Route::get('/affiliated-companies', [HomeController::class, 'affiliated_company'])->name('affiliated.company');
+

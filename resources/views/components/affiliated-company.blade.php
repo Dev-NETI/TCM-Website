@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div class="absolute lg:bottom-[-3rem] xl:bottom-[-5rem] left-0 right-0 z-50">
+    <div class="absolute lg:bottom-[-3rem] xl:bottom-[-5rem] left-0 right-0 z-[999]">
         <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M0 100C106.667 100 213.333 56 320 56C426.667 56 533.333 100 640 100C746.667 100 853.333 56 960 56C1066.67 56 1173.33 100 1280 100C1386.67 100 1440 80 1440 70V0H0V100Z"

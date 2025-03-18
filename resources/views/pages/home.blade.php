@@ -29,7 +29,7 @@
             '/images/gallery/gallery (10).jpg',
         ];
     @endphp
-
+    
     <div class="relative">
         <x-hero-section />
         <x-affiliated-company :companies="$companies" />
