@@ -42,7 +42,7 @@
             <!-- Logo -->
             <div class="flex items-center">
                 <a href="{{route('home')}}" class="text-xl font-bold text-gray-800">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-28">
                 </a>
             </div>
 
@@ -110,18 +110,18 @@
             const isScrolled = window.scrollY >= navOffset;
 
             if (isScrolled) {
-                nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-white/95");
+                nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-blue-950/95");
                 nav.classList.remove("absolute");
                 links.classList.remove("text-white");
-                links.classList.add("text-blue-900");
+                links.classList.add("text-white");
                 if (activeLink) {
                     activeLink.classList.remove("border-white");
-                    activeLink.classList.add("border-blue-900");
+                    activeLink.classList.add("border-white");
                 }
                 openMenuBtn.classList.remove("text-white");
                 openMenuBtn.classList.add("text-blue-900");
             } else {
-                nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-white/95");
+                nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-blue-950/95");
                 nav.classList.add("absolute");
                 links.classList.add("text-white");
                 links.classList.remove("text-blue-900");
