@@ -23,15 +23,15 @@
         
         <x-navigation />
 
-        <main class="relative">
-            <div class="container mx-auto px-4">
+        <main class="relative w-full">
+            <div class="relative w-full">
                 @yield('content')
             </div>
         </main>
 
-        <x-footer />
     </div>
 
+       <x-footer />
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
    @stack('scripts')

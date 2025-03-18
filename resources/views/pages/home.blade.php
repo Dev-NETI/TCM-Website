@@ -34,7 +34,7 @@
         <x-hero-section />
         <x-affiliated-company :companies="$companies" />
         <x-services-section :services="$services"/>
-        <x-gallery :images="$galleryImages" />
+        <x-profile />
         <x-gallery :images="$galleryImages" />
         <x-contact-form />    
     </div>
