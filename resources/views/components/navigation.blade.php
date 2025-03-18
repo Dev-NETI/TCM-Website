@@ -47,27 +47,31 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="open-menu" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="open-menu" class="md:hidden">
+                <svg class="w-6 h-6 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
 
             <!-- Mobile Menu Overlay -->
-            <div id="mobile-menu-overlay" class="fixed inset-0 backdrop-blur-lg bg-blue-900/70 z-50 transform translate-x-full transition-transform duration-300 md:hidden">
-                <div class="flex justify-end p-6">
-                    <button id="close-menu" class="text-white hover:text-blue-300 transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+            <div id="mobile-menu-overlay" class="fixed inset-0 backdrop-blur-lg bg-blue-900/90 z-[100] transform translate-x-full transition-transform duration-300 md:hidden">
+                <div class="flex flex-col h-full">
+                    <div class="flex justify-end p-6">
+                        <button id="close-menu" class="text-white hover:text-yellow-500 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center">
+                        <ul class="flex flex-col items-center space-y-8 text-white text-xl">
+                            <li><a href="{{route('home')}}" class="hover:text-yellow-500 transition-colors {{ (Route::currentRouteName() === 'home')? 'text-yellow-500 border-b-2 border-yellow-500': '' }}">Home</a></li>
+                            <li><a href="{{route('about')}}" class="hover:text-yellow-500 transition-colors {{ request()->is('about*')? 'text-yellow-500 border-b-2 border-yellow-500': '' }}">About Us</a></li>
+                            <li><a href="{{route('services')}}" class="hover:text-yellow-500 transition-colors {{ request()->is('services*')? 'text-yellow-500 border-b-2 border-yellow-500': '' }}">Our Services</a></li>
+                            <li><a href="{{route('contact-us')}}" class="hover:text-yellow-500 transition-colors {{ request()->is('contact*')? 'text-yellow-500 border-b-2 border-yellow-500': '' }}">Contact</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="flex flex-col items-center space-y-8 text-white text-2xl">
-                    <li><a href="{{route('home')}}" class="hover:text-blue-300 transition-colors {{ (Route::currentRouteName() === 'home')? 'text-blue-300 border-b-2 border-blue-300': '' }}">Home</a></li>
-                    <li><a href="{{route('about')}}" class="hover:text-blue-300 transition-colors {{ request()->is('about*')? 'text-blue-300 border-b-2 border-blue-300': '' }}">About Us</a></li>
-                    <li><a href="{{route('services')}}" class="hover:text-blue-300 transition-colors {{ request()->is('services*')? 'text-blue-300 border-b-2 border-blue-300': '' }}">Our Services</a></li>
-                    <li><a href="{{route('contact')}}" class="hover:text-blue-300 transition-colors {{ request()->is('contact*')? 'text-blue-300 border-b-2 border-blue-300': '' }}">Contact</a></li>
-                </ul>
             </div>
 
             <!-- Desktop Navigation -->
@@ -75,17 +79,17 @@
                 <a href="{{route('home')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ (Route::currentRouteName() === 'home')? 'border-b-4 border-white active-nav': '' }}">Home</a>
                 <a href="{{route('about')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ request()->is('about*')? 'border-b-4 border-white active-nav': '' }}">About Us</a>
                 <a href="{{route('services')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ request()->is('services*')? 'border-b-4 border-white active-nav': '' }}">Our Services</a>
-                <a href="{{route('contact')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ request()->is('contact*')? 'border-b-4 border-white active-nav': '' }}">Contact</a>
+                <a href="{{route('contact-us')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ request()->is('contact*')? 'border-b-4 border-white active-nav': '' }}">Contact</a>
             </div>
         </div>
 
         <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 mt-4 text-blue-700">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 mt-4 text-blue-700 z-50">
             <div class="container mx-auto px-4 py-2">
                 <a href="{{route('home')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300 ">Home</a>
                 <a href="{{route('about')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">About Us</a>
                 <a href="{{route('services')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Our Services</a>
-                <a href="{{route('contact')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Contact</a>
+                <a href="{{route('contact-us')}}" class="block py-2 text-gray-800 hover:text-blue-600 transition duration-300">Contact</a>
             </div>
         </div>
     </div>
@@ -93,36 +97,59 @@
 
 <!-- JavaScript for Mobile Menu Toggle -->
 <script>
-    document.getElementById('open-menu').addEventListener('click', () => {
-        document.getElementById('mobile-menu-overlay').classList.remove('translate-x-full');
-    });
-
-    document.getElementById('close-menu').addEventListener('click', () => {
-        document.getElementById('mobile-menu-overlay').classList.add('translate-x-full');
-    });
-
     document.addEventListener("DOMContentLoaded", function() {
         const nav = document.querySelector("#sticky-nav");
-        const links = document.querySelector("#sticky-nav-links")
-        const active_link = document.querySelector(".active-nav")
+        const links = document.querySelector("#sticky-nav-links");
+        const activeLink = document.querySelector(".active-nav");
+        const openMenuBtn = document.getElementById('open-menu');
         const navOffset = nav.offsetTop;
+
+        // Update menu button color based on scroll position
+        function updateMenuButtonColor() {
+            if (window.scrollY >= navOffset) {
+                openMenuBtn.querySelector('svg').classList.remove('text-white');
+                openMenuBtn.querySelector('svg').classList.add('text-blue-900');
+            } else {
+                openMenuBtn.querySelector('svg').classList.add('text-white');
+                openMenuBtn.querySelector('svg').classList.remove('text-blue-900');
+            }
+        }
 
         window.addEventListener("scroll", function() {
             if (window.scrollY >= navOffset) {
                 nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-white/95");
                 nav.classList.remove("absolute");
-                links.classList.remove("text-white")
-                links.classList.add("text-blue-900")
-                active_link.classList.remove("border-white")
-                active_link.classList.add("border-blue-900")
+                links.classList.remove("text-white");
+                links.classList.add("text-blue-900");
+                if (activeLink) {
+                    activeLink.classList.remove("border-white");
+                    activeLink.classList.add("border-blue-900");
+                }
             } else {
                 nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-white/95");
                 nav.classList.add("absolute");
-                links.classList.add("text-white")
-                links.classList.remove("text-blue-900")
-                active_link.classList.add("border-white")
-                active_link.classList.remove("border-blue-900")
+                links.classList.add("text-white");
+                links.classList.remove("text-blue-900");
+                if (activeLink) {
+                    activeLink.classList.add("border-white");
+                    activeLink.classList.remove("border-blue-900");
+                }
             }
+            updateMenuButtonColor();
+        });
+
+        // Initial color update
+        updateMenuButtonColor();
+
+        // Mobile menu toggle
+        document.getElementById('open-menu').addEventListener('click', () => {
+            document.getElementById('mobile-menu-overlay').classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+        });
+
+        document.getElementById('close-menu').addEventListener('click', () => {
+            document.getElementById('mobile-menu-overlay').classList.add('translate-x-full');
+            document.body.style.overflow = ''; // Restore scrolling
         });
     });
 </script>

@@ -21,7 +21,7 @@ $galleryImages = [
     <div class="relative bg-blue-900 text-white min-h-screen">
         <!-- Background image -->
         <div class="absolute inset-0 bg-black">
-            <img src="{{ asset('assets/images/Services.png') }}" alt="Hero Background"
+            <img src="{{ asset('assets/images/_K3P1108.jpg') }}" alt="Hero Background"
                 class="w-full h-full object-cover opacity-50">
         </div>
 
@@ -48,7 +48,7 @@ $galleryImages = [
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <!-- Company 1 -->
                 <div class="flex flex-col items-center">
-                    <div class="relative overflow-hidden rounded-lg shadow-lg mb-4">
+                    <div class="relative overflow-hidden rounded-lg  mb-4">
                         <img src="{{ asset('assets/images/logos/FETRAN.jpg') }}" alt="Company 1"
                             class="w-full h-64 object-cover transition-transform duration-300 ">
                     </div>
@@ -58,7 +58,7 @@ $galleryImages = [
 
                 <!-- Company 2 -->
                 <div class="flex flex-col items-center">
-                    <div class="relative overflow-hidden rounded-lg shadow-lg mb-4">
+                    <div class="relative overflow-hidden rounded-lg  mb-4">
                         <img src="{{ asset('assets/images/logos/TSM.jpg') }}" alt="Company 2"
                             class="w-full h-64 object-cover transition-transform duration-300 ">
                     </div>
@@ -68,7 +68,7 @@ $galleryImages = [
 
                 <!-- Company 3 -->
                 <div class="flex flex-col items-center">
-                    <div class="relative overflow-hidden rounded-lg shadow-lg mb-4">
+                    <div class="relative overflow-hidden rounded-lg  mb-4">
                         <img src="{{ asset('assets/images/logos/TCM.jpg') }}" alt="Company 3"
                             class="w-full h-64 object-cover transition-transform duration-300 ">
                     </div>
@@ -78,7 +78,7 @@ $galleryImages = [
 
                 <!-- Company 4 -->
                 <div class="flex flex-col items-center">
-                    <div class="relative overflow-hidden rounded-lg shadow-lg mb-4">
+                    <div class="relative overflow-hidden rounded-lg  mb-4">
                         <img src="{{ asset('assets/images/logos/Vroon.jpg') }}" alt="Company 4"
                             class="w-full h-64 object-cover transition-transform duration-300 ">
                     </div>
@@ -95,7 +95,6 @@ $galleryImages = [
             <path fill="white" fill-opacity="1" d="M0,160 C480,320 960,0 1440,160 L1440,0 L0,0 Z"></path>
         </svg>
     </div>
-    <x-gallery :images="$galleryImages" />
     <x-gallery :images="$galleryImages" />
     <x-contact-form />
 </div>
