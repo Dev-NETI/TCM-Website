@@ -20,16 +20,19 @@ class HomeController extends Controller
         // Get all gallery images from the public directory
         $galleryPath = public_path('images/gallery');
         $galleryImages = [];
+
     
         if (File::exists($galleryPath)) {
             $files = File::files($galleryPath);
     
+
             foreach ($files as $file) {
                 if (in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
                     $galleryImages[] = '/images/gallery/' . $file->getFilename();
                 }
             }
         }
+
     
        
     
@@ -38,7 +41,6 @@ class HomeController extends Controller
         ]);
     }
     
-
 
     /**
      * Handle contact form submission.

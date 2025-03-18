@@ -17,8 +17,26 @@
     ]
 @endphp
 @section('content')
-    <div>
+    @php
+        $galleryImages = [
+            '/images/gallery/gallery (1).jpg',
+            '/images/gallery/gallery (2).jpg',
+            '/images/gallery/gallery (3).jpg',
+            '/images/gallery/gallery (4).jpg',
+            '/images/gallery/gallery (5).jpg',
+            '/images/gallery/gallery (6).jpg',
+            '/images/gallery/gallery (7).jpg',
+            '/images/gallery/gallery (10).jpg',
+        ];
+    @endphp
+    
+    <div class="relative">
         <x-hero-section />
         <x-affiliated-company :companies="$companies" />
         <x-services-section :services="$services"/>
+        <x-gallery :images="$galleryImages" />
+        <x-gallery :images="$galleryImages" />
+        <x-contact-form />    
     </div>
+
+@endsection

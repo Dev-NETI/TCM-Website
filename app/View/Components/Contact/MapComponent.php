@@ -6,12 +6,12 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ContactCard extends Component
+class MapComponent extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $company, public string $contact, public string $email, public string $workingHours)
+    public function __construct(public string $mapUrl)
     {
         //
     }
@@ -21,6 +21,6 @@ class ContactCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.contact.contact-card');
+        return view('components.contact.map-component');
     }
 }
