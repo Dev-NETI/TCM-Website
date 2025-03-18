@@ -1,4 +1,4 @@
-@props(['companies']) 
+@props(['companies'])
 
 <div class="bg-white w-full relative">
     <div class="w-full h-8 absolute top-[-1em] md:top-[-3em] xl:top-[-5em] left-0 right-0 z-10">
@@ -12,19 +12,19 @@
         <div class="flex flex-col items-center justify-center w-full h-[auto] xl:h-[60vh] 2xl:h-[40vh]">
             <div class="mb-8">
                 <span class="text-2xl md:text-5xl text-[#282c64]">OUR MEMBER COMPANIES</span>
-            </div> 
+            </div>
             <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
                 @foreach ($companies as $company)
-                    <div class="flex flex-col items-center">
-                        <img src="{{ $company['image'] }}" alt="{{ $company['name'] }}" class="w-30 md:w-70 h-30 md:h-70 mb-4">
-                        <p class="text-xl text-[#282c64]">{{ $company['name'] }}</p>
-                        <p class="text-xl text-[#282c64]">{{ $company['sub'] }}</p>
-                    </div>
+                <div class="flex flex-col items-center">
+                    <img src="{{ $company['image'] }}" alt="{{ $company['name'] }}" class="w-30 md:w-70 h-30 md:h-70 mb-4">
+                    <p class="text-xl text-[#282c64]">{{ $company['name'] }}</p>
+                    <p class="text-xl text-[#282c64]">{{ $company['sub'] }}</p>
+                </div>
                 @endforeach
             </div>
         </div>
     </div>
-    <div class="absolute lg:bottom-[-3rem] xl:bottom-[-5rem] left-0 right-0 z-[999]">
+    <div class="absolute lg:bottom-[-3rem] xl:bottom-[-5rem] left-0 right-0 z-[10]">
         <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M0 100C106.667 100 213.333 56 320 56C426.667 56 533.333 100 640 100C746.667 100 853.333 56 960 56C1066.67 56 1173.33 100 1280 100C1386.67 100 1440 80 1440 70V0H0V100Z"

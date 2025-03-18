@@ -1,10 +1,67 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title', 'Services')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDG Maritime Services</title>
+    @vite('resources/css/app.css')
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-@section('content')
+        /* Custom scrollbar styles */
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.5);
+            border-radius: 3px;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.7);
+        }
+
+        @media (max-width: 640px) {
+            .scrollbar-thin::-webkit-scrollbar {
+                width: 4px;
+            }
+        }
+    </style>
+</head>
 
 <body class="bg-gray-100">
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-900 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-blue-800 z-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <!-- Mobile menu overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-blue-900/95 z-50 transform translate-x-full transition-transform duration-300 md:hidden">
+        <div class="flex justify-end p-6">
+            <button id="close-menu" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <ul class="flex flex-col items-center space-y-8 text-white text-2xl">
+            <li><a href="/" class="hover:text-blue-300 transition-colors">Home</a></li>
+            <li><a href="/about" class="hover:text-blue-300 transition-colors">About Us</a></li>
+            <li><a href="/services" class="text-blue-300 border-b-2 border-blue-300">Our Services</a></li>
+            <li><a href="/contact" class="hover:text-blue-300 transition-colors">Contact</a></li>
+        </ul>
+    </div>
+
     <!-- Hero Section -->
     <div class="relative bg-blue-900 text-white min-h-screen">
         <!-- Background image -->
@@ -13,10 +70,31 @@
                 class="w-full h-full object-cover opacity-50">
         </div>
 
+        <!-- Navigation -->
+        <nav class="relative z-10 flex justify-between items-center p-6 animate-fadeIn">
+            <div class="flex items-center">
+                <a href="/">
+                    <img src="{{ asset('assets/images/TDG Maritime 3.png') }}" alt="Logo" class="h-20 mr-3 hover:opacity-90 transition-opacity">
+                </a>
+            </div>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="/" class="hover:text-blue-300 transition-colors">Home</a></li>
+                <li><a href="/about" class="hover:text-blue-300 transition-colors">About Us</a></li>
+                <li><a href="/services" class="text-blue-300 border-b-2 border-blue-300">Our Services</a></li>
+                <li><a href="/contact" class="hover:text-blue-300 transition-colors">Contact</a></li>
+            </ul>
+            <!-- Mobile menu button -->
+            <button id="open-menu" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </nav>
+
         <!-- Hero Content -->
         <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 min-h-[calc(100vh-88px)] animate-fadeIn">
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <h1 class="text-5xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight">OUR SERVICES</h1>
+                <h1 class="text-5xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight">Our Services</h1>
             </div>
 
             <a href="#services" class="animate-bounce absolute bottom-8 sm:bottom-12">
@@ -123,6 +201,51 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.getElementById('open-menu').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.remove('translate-x-full');
+        });
+
+        document.getElementById('close-menu').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.add('translate-x-full');
+        });
+
+        // Back to Top functionality
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Add intersection observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('group-hover:translate-y-0', 'group-hover:opacity-100');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 
-@endsection
+</html>
