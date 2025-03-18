@@ -1,5 +1,5 @@
 <!-- resources/views/components/navigation.blade.php -->
-<nav class="z-50 top-0 overflow-visible h-min">
+<nav class="z-[999] top-0 overflow-visible h-min">
 
     <div class="relative text-white py-4 bg-linear-to-r from-blue-800 to-blue-900">
         <div class="container mx-auto px-4 flex justify-between items-center">
@@ -94,14 +94,14 @@
 
         window.addEventListener("scroll", function () {
             if (window.scrollY >= navOffset) {
-                nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "bg-blue-100");
+                nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "bg-slate-300");
                 nav.classList.remove("absolute");
                 links.classList.remove("text-white")
                 links.classList.add("text-blue-700")
                 active_link.classList.remove("border-white")
                 active_link.classList.add("border-blue-700")
             } else {
-                nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "bg-blue-100");
+                nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "bg-slate-300");
                 nav.classList.add("absolute");
                 links.classList.add("text-white")
                 links.classList.remove("text-blue-700")
