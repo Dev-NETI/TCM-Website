@@ -47,19 +47,35 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+            <button id="open-menu" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+
+            <!-- Mobile Menu Overlay -->
+            <div id="mobile-menu-overlay" class="fixed inset-0 backdrop-blur-lg bg-blue-900/70 z-50 transform translate-x-full transition-transform duration-300 md:hidden">
+                <div class="flex justify-end p-6">
+                    <button id="close-menu" class="text-white hover:text-blue-300 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="flex flex-col items-center space-y-8 text-white text-2xl">
+                    <li><a href="{{route('home')}}" class="hover:text-blue-300 transition-colors {{ (Route::currentRouteName() === 'home')? 'text-blue-300 border-b-2 border-blue-300': '' }}">Home</a></li>
+                    <li><a href="{{route('about')}}" class="hover:text-blue-300 transition-colors {{ request()->is('about*')? 'text-blue-300 border-b-2 border-blue-300': '' }}">About Us</a></li>
+                    <li><a href="{{route('services')}}" class="hover:text-blue-300 transition-colors {{ request()->is('services*')? 'text-blue-300 border-b-2 border-blue-300': '' }}">Our Services</a></li>
+                    <li><a href="{{route('contact')}}" class="hover:text-blue-300 transition-colors {{ request()->is('contact*')? 'text-blue-300 border-b-2 border-blue-300': '' }}">Contact</a></li>
+                </ul>
             </div>
+
             <!-- Desktop Navigation -->
-            <div id="sticky-nav-links" class="hidden md:flex space-x-8 text-white">
-                <a href="{{route('home')}}" class="transition py-2 duration-300 {{ (Route::currentRouteName() === 'home')? 'border-b-4 border-white active-nav': '' }}">Home</a>
-                <a href="{{route('about')}}" class="transition py-2 duration-300 {{ request()->is('about*')? 'border-b-4 border-white active-nav': '' }}">About Us</a>
-                <a href="{{route('services')}}" class="transition py-2 duration-300 {{ request()->is('services*')? 'border-b-4 border-white active-nav': '' }}">Our Services</a>
-                <a href="{{route('contact')}}" class="transition py-2 duration-300 {{ request()->is('contact*')? 'border-b-4 border-white active-nav': '' }}">Contact</a>
+            <div id="sticky-nav-links" class="hidden md:flex space-x-8 text-white font-medium">
+                <a href="{{route('home')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ (Route::currentRouteName() === 'home')? 'border-b-4 border-white active-nav': '' }}">Home</a>
+                <a href="{{route('about')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ request()->is('about*')? 'border-b-4 border-white active-nav': '' }}">About Us</a>
+                <a href="{{route('services')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ request()->is('services*')? 'border-b-4 border-white active-nav': '' }}">Our Services</a>
+                <a href="{{route('contact')}}" class="transition py-2 duration-300 hover:text-yellow-500 {{ request()->is('contact*')? 'border-b-4 border-white active-nav': '' }}">Contact</a>
             </div>
         </div>
 
@@ -77,36 +93,35 @@
 
 <!-- JavaScript for Mobile Menu Toggle -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
+    document.getElementById('open-menu').addEventListener('click', () => {
+        document.getElementById('mobile-menu-overlay').classList.remove('translate-x-full');
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const nav = document.querySelector("#sticky-nav"); // Add an ID to the navbar div
+    document.getElementById('close-menu').addEventListener('click', () => {
+        document.getElementById('mobile-menu-overlay').classList.add('translate-x-full');
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const nav = document.querySelector("#sticky-nav");
         const links = document.querySelector("#sticky-nav-links")
         const active_link = document.querySelector(".active-nav")
         const navOffset = nav.offsetTop;
 
-        window.addEventListener("scroll", function () {
+        window.addEventListener("scroll", function() {
             if (window.scrollY >= navOffset) {
-                nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "bg-blue-100");
+                nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-white/95");
                 nav.classList.remove("absolute");
                 links.classList.remove("text-white")
-                links.classList.add("text-blue-700")
+                links.classList.add("text-blue-900")
                 active_link.classList.remove("border-white")
-                active_link.classList.add("border-blue-700")
+                active_link.classList.add("border-blue-900")
             } else {
-                nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "bg-blue-100");
+                nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-white/95");
                 nav.classList.add("absolute");
                 links.classList.add("text-white")
-                links.classList.remove("text-blue-700")
+                links.classList.remove("text-blue-900")
                 active_link.classList.add("border-white")
-                active_link.classList.remove("border-blue-700")
+                active_link.classList.remove("border-blue-900")
             }
         });
     });
