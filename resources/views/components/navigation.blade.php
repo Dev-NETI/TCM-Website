@@ -37,7 +37,7 @@
     </div>
 
     <!-- Second Layer - Main Navigation -->
-    <div id="sticky-nav" class="absolute w-full py-4 z-50">
+    <div id="sticky-nav" class="absolute w-full py-4 z-100">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center">
@@ -47,14 +47,14 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="open-menu" class="md:hidden">
-                <svg class="w-6 h-6 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="open-menu" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
 
             <!-- Mobile Menu Overlay -->
-            <div id="mobile-menu-overlay" class="fixed inset-0 backdrop-blur-lg bg-blue-900/90 z-[100] transform translate-x-full transition-transform duration-300 md:hidden">
+            <div id="mobile-menu-overlay" class="fixed inset-0 backdrop-blur-lg bg-blue-900/90 z-[9999] transform translate-x-full transition-transform duration-300 md:hidden">
                 <div class="flex flex-col h-full">
                     <div class="flex justify-end p-6">
                         <button id="close-menu" class="text-white hover:text-yellow-500 transition-colors">
@@ -102,29 +102,14 @@
         const links = document.querySelector("#sticky-nav-links");
         const activeLink = document.querySelector(".active-nav");
         const openMenuBtn = document.getElementById('open-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
         const navOffset = nav.offsetTop;
 
-        // Update menu button color based on scroll position
-        function updateMenuButtonColor() {
-            if (window.scrollY >= navOffset) {
-                nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "bg-slate-300");
-                nav.classList.remove("absolute");
-                links.classList.remove("text-white")
-                links.classList.add("text-blue-700")
-                active_link.classList.remove("border-white")
-                active_link.classList.add("border-blue-700")
-            } else {
-                nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "bg-slate-300");
-                nav.classList.add("absolute");
-                links.classList.add("text-white")
-                links.classList.remove("text-blue-700")
-                active_link.classList.add("border-white")
-                active_link.classList.remove("border-blue-700")
-            }
-        }
+        // Function to update navigation styles based on scroll position
+        function updateNavStyles() {
+            const isScrolled = window.scrollY >= navOffset;
 
-        window.addEventListener("scroll", function() {
-            if (window.scrollY >= navOffset) {
+            if (isScrolled) {
                 nav.classList.add("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-white/95");
                 nav.classList.remove("absolute");
                 links.classList.remove("text-white");
@@ -133,6 +118,8 @@
                     activeLink.classList.remove("border-white");
                     activeLink.classList.add("border-blue-900");
                 }
+                openMenuBtn.classList.remove("text-white");
+                openMenuBtn.classList.add("text-blue-900");
             } else {
                 nav.classList.remove("fixed", "top-0", "left-0", "shadow-md", "backdrop-blur-lg", "bg-white/95");
                 nav.classList.add("absolute");
@@ -142,22 +129,42 @@
                     activeLink.classList.add("border-white");
                     activeLink.classList.remove("border-blue-900");
                 }
+                openMenuBtn.classList.add("text-white");
+                openMenuBtn.classList.remove("text-blue-900");
             }
-            updateMenuButtonColor();
-        });
+        }
 
-        // Initial color update
-        updateMenuButtonColor();
+        // Call on scroll
+        window.addEventListener("scroll", updateNavStyles);
 
-        // Mobile menu toggle
+        // Initial style update
+        updateNavStyles();
+
+        // Updated mobile menu toggle functionality
         document.getElementById('open-menu').addEventListener('click', () => {
-            document.getElementById('mobile-menu-overlay').classList.remove('translate-x-full');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            mobileMenuOverlay.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+            // Force the overlay to be at the very top of the viewport
+            window.scrollTo(0, 0);
         });
 
-        document.getElementById('close-menu').addEventListener('click', () => {
-            document.getElementById('mobile-menu-overlay').classList.add('translate-x-full');
-            document.body.style.overflow = ''; // Restore scrolling
+        document.getElementById('close-menu').addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling to overlay
+            mobileMenuOverlay.classList.add('translate-x-full');
+            document.body.style.overflow = '';
+        });
+
+        // Prevent clicks inside the menu content from closing the menu
+        mobileMenuOverlay.querySelector('.flex-col').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close menu when clicking outside
+        mobileMenuOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileMenuOverlay) {
+                mobileMenuOverlay.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+            }
         });
     });
 </script>
