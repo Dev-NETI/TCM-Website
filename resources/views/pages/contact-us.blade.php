@@ -36,7 +36,7 @@
 
                 <div class="flex flex-col md:flex-row justify-center items-center gap-16 max-w-5xl">
                         <x-contact.contact-card-component company="TDG Ship Management, Inc. (TDGSM)"
-                                contact="+632-8-527-7301"
+                                contact="+63-8-830-8838"
                                 websiteUrl="https://tdgworld.com"
                                 email="techmanage@tdgsm.ph"
                                 workingHours="Monday - Friday; 9AM - 5PM" />
@@ -46,7 +46,7 @@
 
                 <div class="flex flex-col md:flex-row justify-center items-center gap-16 max-w-5xl">
                         <x-contact.contact-card-component company="TDG Crew Management, Inc. (TDGCM)"
-                                contact="+632-8-245-2202 / +632-8-245-2210"
+                                contact="+63-8-830-8832"
                                 websiteUrl="http://www.tdgcm.ph"
                                 email="comms@tdgcm.ph, recruitment@tdgcm.ph"
                                 workingHours="Monday - Friday; 9AM - 5PM" />
